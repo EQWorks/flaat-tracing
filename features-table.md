@@ -9,7 +9,9 @@ Main criteria of this analysis for each feature:
 - Amount of overall traffic
 - Ability to collect and analyze data
 
+
 ### Geolocation Data Stored Locally
+
 
 <table>
   <tr>
@@ -48,8 +50,8 @@ Main criteria of this analysis for each feature:
    <td>
    </td>
    <td>Doesn’t give much value to reduce precision if data is stored only locally.
-
-   Precision is lost - in case we need accurate data at some point, it won’t be available.
+<p>
+Precision is lost - in case we need accurate data at some point, it won’t be available.
    </td>
    <td>High
    </td>
@@ -58,9 +60,12 @@ Main criteria of this analysis for each feature:
   </tr>
 </table>
 
+
 <sup>*</sup> In case data is stored only locally and we let users know that we don’t upload it to server.
 
+
 ### Geolocation Data Stored on Servers
+
 
 <table>
   <tr>
@@ -83,7 +88,7 @@ Main criteria of this analysis for each feature:
    <td>
    </td>
    <td>Allows very precise filtering and analytics.
-
+<p>
 Minimizes notifications sent to people at risk.
    </td>
    <td>Centralized storage of all locations of all users poses serious privacy and security risks.
@@ -123,9 +128,12 @@ Minimizes notifications sent to people at risk.
   </tr>
 </table>
 
+
 <sup>*</sup> Assuming that we let users know that their location data is not shared with us.
 
+
 ### Bluetooth Encounters Data Stored on Servers
+
 
 <table>
   <tr>
@@ -148,7 +156,7 @@ Minimizes notifications sent to people at risk.
    <td>Maybe plain UUIDs
    </td>
    <td>Allows very precise filtering and analytics.
-
+<p>
 Minimizes notifications sent to people at risk.
    </td>
    <td>
@@ -164,7 +172,7 @@ Minimizes notifications sent to people at risk.
    <td>Maybe plain UUIDs or public keys
    </td>
    <td>Risk data may be reused / resent to newly onboarded users.
-
+<p>
 Some analytics may be done (e.g. when confirmed, when recovered).
    </td>
    <td>Broadcasting or server polling may be required for notifying users (if no geolocation is available on servers)
@@ -182,7 +190,7 @@ Some analytics may be done (e.g. when confirmed, when recovered).
    <td>
    </td>
    <td>Broadcasting or server polling may be required for notifying users (if no geolocation is available on servers).
-
+<p>
 No analytics or look-back functionality available.
    </td>
    <td>High
@@ -192,11 +200,14 @@ No analytics or look-back functionality available.
   </tr>
 </table>
 
+
 <sup>*</sup> Only if the IDs are anonymized (without any link to phone, email etc.)
 
 <sup>**</sup> In case we make clear to users that they fully control the data to be shared
 
+
 ### Data Uploaded in Reports
+
 
 <table>
   <tr>
@@ -257,9 +268,12 @@ No analytics or look-back functionality available.
   </tr>
 </table>
 
+
 <sup>*</sup> Only if we don’t store uploaded data and let users know about that
 
+
 ### Other Data Stored on Servers
+
 
 <table>
   <tr>
@@ -282,7 +296,7 @@ No analytics or look-back functionality available.
    <td>
    </td>
    <td>Ability to contact people by phone.
-
+<p>
 Guarantee that person is real and has Canadian number.
    </td>
    <td> Security and privacy risks.
@@ -322,7 +336,10 @@ Guarantee that person is real and has Canadian number.
   </tr>
 </table>
 
+
+
 ### Notifying Users at Risk
+
 
 <table>
   <tr>
@@ -343,7 +360,7 @@ Guarantee that person is real and has Canadian number.
    <td>No need to store any ids/locations on servers.
    </td>
    <td>Very high traffic volume with 99% data ignored.
-
+<p>
 (Can be optimized by bundling and sending reports every X hours.)
    </td>
   </tr>
@@ -375,17 +392,22 @@ Guarantee that person is real and has Canadian number.
    <td>No need to precisely send notifications or broadcast them.
    </td>
    <td>Active cases (ids/geohashes) need to be stored on servers for a while.
-
+<p>
 Downloading list may be problematic if number of active cases is high.
-
+<p>
 App needs to be woken up periodically to poll from server.
    </td>
   </tr>
 </table>
 
+
+
+
+
 ### Report Verification
 
 HA - health authority
+
 
 <table>
   <tr>
@@ -430,7 +452,10 @@ HA - health authority
   </tr>
 </table>
 
+
+
 ### BLE Message Generation and Exchange
+
 
 <table>
   <tr>
@@ -451,9 +476,9 @@ HA - health authority
    <td>Easy to generate and share.
    </td>
    <td>If UUIDs are stored on the server, we can map each UUID to device ID which has moderate privacy concerns.
-
+<p>
 Including any additional info about the encounter (when, where it happened) poses risks when data is broadcasted (without storing on server) because all devices will get it.
-
+<p>
 UUID is plain and doesn’t provide any additional info.
    </td>
   </tr>
@@ -462,7 +487,7 @@ UUID is plain and doesn’t provide any additional info.
    </td>
    <td>Public key is shared to all encounters
    </td>
-   <td>Device of infected person can encrypt additional info about the encounter (e.g. when and where it happened) without sharing it with all devices, so only target device can decrypt the message.
+   <td>Device of infected person can encrypt additional info about the encounter (e.g. <strong>when and where</strong> it happened) without sharing it with all devices, so only target device can decrypt the message.
    </td>
    <td>No analysis can be done even if data is stored on server because it can be decrypted only by target device (of person at risk).
    </td>
@@ -475,10 +500,34 @@ UUID is plain and doesn’t provide any additional info.
    <td>We can send push notifications directly to target users if we store user IDs &lt;-> device IDs on server and encrypt them with public key when exchanging with peers.
    </td>
    <td>Requires refreshing public keys from server periodically.
-
+<p>
 Requires storage of key pairs on server.
-
+<p>
 Requires server to decrypt the message and have device IDs mapped to user IDs to send notifications to target users => moderate privacy concerns.
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Hashes device id and Broadcasts</strong>
+   </td>
+   <td>* Each device hash its device id and broadcases
+<p>
+* Each device keep listening to the broadcast hashes and stores the hashes with date
+<p>
+* At particular time device posts the all the hashes to the server to check if any of hashes are registered in the server
+<p>
+* If it gets positive for some hashes it saves those hashes. So it won’t ask again for those hashes
+<p>
+* The ones that has been diagnosed positive will hash their device id and upload the hash to the server
+   </td>
+   <td>Server will only have a bunch of hashes.
+<p>
+Each devices will only have a bunch of hashes
+<p>
+Easy to implement
+   </td>
+   <td>Each device has to request from the server.
+<p>
+No analysis can be done in any end.
    </td>
   </tr>
 </table>
