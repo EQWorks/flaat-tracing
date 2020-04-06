@@ -24,15 +24,9 @@ Given the trade offs between privacy and accuracy listed above, the most accurat
 
 ### References
 
-1. Ramesh Raskar, MIT (March 19, 2020) _Apps Gone Rogue: Maintaining Personal Privacy in an Epidemic_ \
-<https://arxiv.org/pdf/2003.08567.pdf>
-2. Singapore Government Digital Services (April 1, 2020) _Trace together, safer together_ \
-<https://www.tracetogether.gov.sg/>
-3. Dilshan Kathriarachchi & Global News (April 2, 2020) _Should Canada use our cell phones to slow the spread of COVID-19?_ \
-<https://omny.fm/shows/wait-theres-more/should-canada-use-our-cell-phones-to-slow-the-spre>
-4. WeTrace & AndreasGassmann (March 30, 2020) _Privacy-Preserving Bluetooth Covid-19 Contract Tracing_ \
-<https://wetrace.ch/>, <https://devpost.com/software/wetrace-g9ocyi>
-5. Prof. Carmela Troncoso (April 3, 2020) _DP-3T - Decentralized Privacy-Preserving Proximity Tracing_ \
-<https://github.com/DP-3T/documents>
-6. Co-Epi (Community Epidemiology In Action) \
-<https://www.coepi.org/>
+1. Ramesh Raskar, MIT (March 19, 2020) _Apps Gone Rogue: Maintaining Personal Privacy in an Epidemic_ <https://arxiv.org/pdf/2003.08567.pdf>
+2. Singapore Government Digital Services (April 1, 2020) _Trace together, safer together_ <https://www.tracetogether.gov.sg/>
+3. Dilshan Kathriarachchi & Global News (April 2, 2020) _Should Canada use our cell phones to slow the spread of COVID-19?_ <https://omny.fm/shows/wait-theres-more/should-canada-use-our-cell-phones-to-slow-the-spre>
+4. WeTrace & AndreasGassmann (March 30, 2020) _Privacy-Preserving Bluetooth Covid-19 Contract Tracing_ <https://wetrace.ch/>, <https://devpost.com/software/wetrace-g9ocyi>
+5. Prof. Carmela Troncoso (April 3, 2020) _DP-3T - Decentralized Privacy-Preserving Proximity Tracing_ <https://github.com/DP-3T/documents>
+6. Co-Epi (Community Epidemiology In Action) <https://www.coepi.org/>
