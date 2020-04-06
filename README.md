@@ -73,7 +73,7 @@ Apropos of the discussion in the preceding paragraphs, we feel that the most acc
 
 This process offers the following undeniable advantages — it minimizes the data collected only to the bare minimum for the purpose at hand, it requires explicit user consent for any transmission of data and finally, it only notifies people of an immediate health risk. We are hopeful that these three facets of the system being proposed here will engender the general populace’s trust in the application, making it an effective tool with which to combat the spread of COVID-19.
 
-[View API Specs](api-spec.md)
+[View API Specs](api-spec.md).
 
 **References**
 
