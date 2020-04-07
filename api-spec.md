@@ -117,10 +117,43 @@ Reporting
  }
 ```
 
+Broadcast (Deliver by Health Authorities)
+------------------------------------------------------------
+
+#### Confirmed Reports to Broadcast: `POST /reports/broadcast`
+#### Auth Required: Yes
+#### Body Example:
+```
+{
+   "device_id": "xxxxxx"
+   “info_questions”: {
+        “question_1”: “answer_1”,
+        “question_2”: “answer_2”,
+        ...
+     },
+   “status”: "confirmed",
+   “reported_at”: “timestamp”
+}
+```
+#### Success Response:
+#### Code: `201 CREATED`
+```
+ {
+   "message": "Successfully created."
+ }
+```
+#### Error Response:
+#### Code: `400 BAD REQUEST`
+```
+ {
+   “error”: “Missing fields.”
+ }
+```
+
 Local Look-up
 -------------
 
-#### Get Confirmed Reporting: `GET /reports/`
+#### Get Confirmed Reporting: `GET /reports/broadcast`
 #### Auth Required: Yes
 #### Body Example:
 ```
