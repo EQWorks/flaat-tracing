@@ -1,66 +1,10 @@
 # API specs
 
-Registration
-------------
-- Go to the following 2 routes if building profile using phone number.
-
-`POST /register/get_pin/`
-#### Auth Required: No
-#### Body Example:
-```
-{ 
-  “phone_number”: “+12222222222” 
-}
-```
-#### Success Response:
-#### Code: `200 OK`
-```
-{
-   “message”: “Sms with temporary pin sent to phone.” 
-}
-```
-#### Error Response:
-#### Code: `400 BAD REQUEST`
-```
-{ 
-  "error": "Invalid request."
-}
-```
-
-`POST /register/`
-
-#### Auth Required: No
-#### Body Example:
-```
- {
-   “phone_number”: “+12222222222”,
-   “temporary_pin”: “xxxxxx”,
-   “device_id”: “xxxxxx”
- }
-```
-#### Success Response:
-#### Code: `201 CREATED`
-```
- {
-   “valid”: true,
-   “token”: “xxxxxx”
- }
-```
-#### Error Response:
-#### Code: `400 BAD REQUEST`
-```
- {
-   “valid”: false,
-   “error”: “No pin entered, or temporary pin did not match.”
- }
-
-```
-
 Login
------
-- Go to this route for login (and registration as well if not building profile with phone number).   
+-----   
 
-`POST /login/`
+#### Login & Register: `POST /login/`
+
 #### Auth Required: No
 #### Body Example:
 ```
@@ -85,12 +29,14 @@ Login
 
 Reporting
 ---------
-`POST /reports/`
+
+#### Report Diagnosis: `POST /reports/`
 #### Auth Required: Yes
 #### Body Example:
 ```
 {
-   "pre_auth_token": "xxxxxx",
+   "device_id": "xxxxxx"
+   "ha_token": "xxxxxx",
    “info_questions”: {
         “question_1”: “answer_1”,
         “question_2”: “answer_2”,
@@ -98,7 +44,6 @@ Reporting
      },
    “status”: "confirmed",
    “reported_at”: “timestamp”
-
 }
 ```
 #### Success Response:
@@ -116,16 +61,16 @@ Reporting
  }
 ```
 
-`POST /encounters/`
+#### Upload BLE Encounters: `POST /encounters/`
 #### Auth Required: Yes
 #### Body Example:
 ```
 {
-   "user_id": "xxxxxx",
+   "device_id": "xxxxxx",
    “encountered_list”: [
      {
        “encountered_id”: “xxxxxx”,
-       “rssi”: (bluetooth signal intensity)
+       “rssi”: -70,
        “encountered_at”: “timestamp”
       }
     ]
@@ -146,12 +91,12 @@ Reporting
  }
 ```
 
-`POST /traces/`
+#### Upload Location History: `POST /traces/`
 #### Auth Required: Yes
 #### Body Example:
 ```
 {
-   “user_id”: “xxxxxx”,
+   “device_id”: “xxxxxx”,
    “trace”: [
      { geo-Json }
     ]
@@ -174,12 +119,13 @@ Reporting
 
 Local Look-up
 -------------
-`GET /reports/`
+
+#### Get Confirmed Reporting: `GET /reports/`
 #### Auth Required: Yes
 #### Body Example:
 ```
 {
-  "user_id": "xxxxxx"
+  "device_id": "xxxxxx"
 }
 ```
 #### Success Response:
@@ -188,9 +134,10 @@ Local Look-up
 ```
  {
    “found_diagnosed”: true,
-   “diagnosed_device_id”: [
+   “device”: [
       { 
         “device_id”: "xxxxxx",
+        "rssi": -70,
         “encountered_at”: "timestamp"
       }
    ],
