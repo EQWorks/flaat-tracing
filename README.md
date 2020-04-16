@@ -1,4 +1,4 @@
-# ![](./flaat-logo.png)
+# FLAAT Tracing
 
 
 ### Privacy-safe Decentralized Tracing with Informed Consent
