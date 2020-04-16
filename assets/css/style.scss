@@ -1,3 +1,8 @@
-body{
+---
+---
+
+@import "{{ site.theme }}";
+
+.page-header {
   background-color: #3542E4;
 }
