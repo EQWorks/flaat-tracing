@@ -1,46 +1,146 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html lang="en-US">
   <head>
 
-    {% if site.google_analytics %}
-      <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '{{ site.google_analytics }}');
-      </script>
-    {% endif %}
+
     <meta charset="UTF-8">
 
-{% seo %}
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>FLAAT Tracing | Privacy-safe Decentralized Tracing with Informed Consent</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="FLAAT Tracing" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Privacy-safe Decentralized Tracing with Informed Consent" />
+<meta property="og:description" content="Privacy-safe Decentralized Tracing with Informed Consent" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="FLAAT Tracing" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/","name":"FLAAT Tracing","headline":"FLAAT Tracing","description":"Privacy-safe Decentralized Tracing with Informed Consent","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/logo/logo.png"}},"@type":"WebSite","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="/assets/css/style.css?v=29a14d4f836b96afd778410224a85ae517b018b7">
   </head>
   <body>
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <header class="page-header" role="banner">
-      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      {% if site.github.is_project_page %}
-        <a href="{{ site.github.repository_url }}" class="btn">View on GitHub</a>
-      {% endif %}
-      {% if site.show_downloads %}
-        <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
-        <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
-      {% endif %}
+      <h1 class="project-name">
+        <img src='../assets/logo/logo.svg' />
+      </h1>
+      <a href="https://github.com/EQWorks/flaat-tracing" class="btn">View on GitHub</a>
+      <h2 class="project-tagline">Powered by <strong>EQ Works</strong></h2>
+
+
     </header>
 
     <main id="content" class="main-content" role="main">
-      {{ content }}
+      <div class="grid-container">
+        <div class="grid-item1"><h1 id="flaat-tracing">FLAAT Tracing Whitepaper</h1></div>
+        <div class="grid-item2"><p>First Published: April 6, 2020</p></div>
+      </div>
+
+
+<h3 id="privacy-safe-decentralized-tracing-with-informed-consent">Privacy-safe Decentralized Tracing with Informed Consent</h3>
+
+<p>There is an immediate need for health and government officials across the country to have access to high-quality contact tracing data, and there exists a variety of different mechanisms through which this data can be collected. However, as in any endeavor dealing with potentially sensitive information, maximizing the accuracy of the data obtained usually entails a consequent loss in privacy, and it is this balancing act between accuracy and privacy that deserves greater scrutiny. Any solution trying to address this issue will have to toe the line between the procurement of accurate and verifiable data while allowing consumers to rest assured behind a privacy shield. Such a solution would then open the doorway to widespread consumer adoption needed to reach the critical mass required to inform policy changes during the current COVID-19 crisis.</p>
+
+<p>In this whitepaper, we are going to analyze the different ways in which cellular technology can be used for reliable contact tracing while still keeping the public’s privacy intact using the frameworks in place by the Office of the Privacy Commissioner in Canada, thereby assuring users that their data can’t be used for anything other than minimizing the spread of COVID-19. This paper will deal with the following topics:</p>
+
+<ul>
+  <li>How the relevant data will be collected and stored.</li>
+  <li>How and when users will be informed when it is believed they may have come into contact with someone who is COVID-19 positive.</li>
+  <li>How users found/claiming to be COVID-19 positive will be verified without collecting identifiers that might compromise their identity.</li>
+</ul>
+
+<h3 id="how-to-log-and-store-the-data">How to Log and Store the Data</h3>
+
+<p><strong>Privacy-safe identification</strong> - In order to remove all traceability back to an individual, we’re proposing the adoption of the CEN identifier sequencing mechanism proposed by CoEpi<sup>[7]</sup>. This would be the only identifier that is either broadcast or uploaded to the repository. This identifier will not be associated with any other identifiers outside of the scope of the mobile application environment. It is possible to utilize other identity-linked identifiers (telephone numbers, MAIDs, etc.) within the mobile application environment subject to the users’ consent to share these attributes with the application in question. All validation against these identifiers must happen at the edge, locally within the mobile application scope using a hashing or encryption process to protect the sanctity of the user’s privacy. Under no circumstances must any non-privacy-safe identifier be broadcast, communicated or uploaded beyond the scope of the mobile application’s local scope and sandbox.</p>
+
+<p><strong>Data logging specifics</strong> - There are two mechanisms — geolocation and bluetooth<sup>[4]</sup> — by which data can be collected and used for COVID-19 contact tracing.</p>
+
+<p>Geolocation can be used to track a user when their cell phone is active and location-sharing is turned on via permission management, allowing one to create a map tracing a user’s journey together with any associated timestamps. If a user happens to be in the vicinity of any of the verified COVID-19 positive devices at around the same time, he/she could then be notified of his/her elevated risk status<sup>[1]</sup>. This has major privacy implications. In order for the data to be useful, the location history would need to be as precise as possible. This would make it relatively easy to determine a user’s home address, and remove the ability for the data to be truly anonymized. Geolocation can be stripped back to large areas for more privacy, but this would come at the cost of the accuracy of the data provided back to health officials. Moreover, users in any relatively high population density area run the risk of being bombarded with notifications, which could possibly result in widespread disengagement with the application in question.</p>
+
+<p>Bluetooth on the other hand, would not require specific geolocation data to function; rather, only an anonymized unique identifier created on the device is required. The Bluetooth mechanism would search the immediate area for other Bluetooth signals, and upon finding them would create a “handshake” between the two devices that verifies these two devices were in the same area at the same time. In this approach, the precise location of the device at any given time is not required, as this process creates a relationship table of all of the anonymized identifiers within the devices that have come into contact with each other. The residential location of the user could be further scrubbed off of the geolocation log by using various heuristic techniques running locally on the mobile device. This allows health and government officials to accurately determine how many devices any given device has come into contact with, and notify the users if they have been in contact with a device that has been verified as COVID-19 positive, all without revealing any sensitive detailed location data that could be traced back to the user.</p>
+
+<p><strong>Mass adoption strategy</strong> - We believe the best possible chance of mass adoption depends on packaging the discovery, data logging, and secure-report validation into a mobile software library. The library will implement both geolocation tagging as well as Bluetooth handshake logs, allowing the applications to implement the protocol to manage various different variables that govern the tracing behavior. This flexibility would allow easy adoption by all the various parties trying to satisfy ground realities and public health challenges unique to each region. Using a single software library would enable a lot of individual apps with a big existing user base to incorporate this package and release a new binary, thereby avoiding a steep adoption curve that might otherwise hold most solutions back. Simultaneously, this also solves the problem of saturation occurring between two or more competing applications.</p>
+
+<p>Once this library has been adopted by a sufficient number of applications, the chance of having an application that implements this library running in the foreground of a mobile device’s operating system increases drastically. There is also considerable technical evidence that one application on a mobile device running in the foreground that activates a sensor also benefits other background applications depending on that sensory input. This would allow an “official” COVID-19 tracing app to piggyback on top of support apps that implement the common library.</p>
+
+<p><strong>Data storage specifics</strong> - The data collected by the process outlined above can be stored either in centralized servers or locally on the mobile device itself.</p>
+
+<p>Irrespective of the approach used, be it geolocation or Bluetooth, storing the data in a centralized repository will allow public health officials to accurately determine where all devices are/have been. This would make seamless the process of mapping all the users back to infected devices via geolocation or by the use of up-to-date relationship tables which maintain a record of devices that have come into contact with a COVID-19 positive device<sup>[3]</sup>. However, this increase in the accuracy of the data obtained comes with a corresponding concession in privacy. The issue lies in the fact that this mass dataset would be available on all devices all the time, regardless of whether a user has or will ever come into contact with a COVID-19 positive device.</p>
+
+<p>Storing the data locally (on a user’s device, irretrievable without the explicit consent of the user) would limit the public authorities’ access. When a user has tested positive for COVID-19, he/she can then make the conscious decision to report and share their data back to a centralized repository for the public good. Data stored locally in this manner would then be deleted periodically as its epidemiological value diminishes over time.</p>
+
+<p>Given the lack of a solution that covers all the various bases and the nature of the various compromises the two solutions mentioned above entail, we propose making available multiple mechanisms for a user to contribute (with consent) their logged epidemiologically valuable data for the explicit purpose of contact tracing, in the event of a positive COVID-19 diagnosis.</p>
+
+<h3 id="how-and-when-to-inform-users-of-cases-spreading-near-them">How and when to inform users of cases spreading near them</h3>
+
+<p><strong>Notification frequency pitfalls</strong> - Broadcasting possible contact with individuals who have a positive COVID-19 status in a timely manner to users is vital in stopping the spread early. This needs to be done accurately, as bombarding users with false-positive warnings can only lead to a gradual disengagement with the application in question. In the ideal scenario, a user would only be notified if they have an immediate health risk in order to maximize the impact this notification would have on that user.</p>
+
+<p>Keeping this in mind, there are a few notification systems that could be implemented via a geohash protocol<sup>[6]</sup> as listed below:</p>
+
+<ul>
+  <li>Everyone in a general area is notified of new cases.</li>
+  <li>Only users who were in an epidemiologically relevant geohash of precise geolocation at the same time as a COVID-19 positive device are notified.</li>
+  <li>Only users whose devices have had a direct Bluetooth “handshake” with a positive device<sup>[5]</sup> are notified. Here, as mentioned earlier in the paper, a privacy-safe identifier is used to log the records of an individual found to be diagnosed with COVID-19.</li>
+</ul>
+
+<p>It is worth pointing out that as we proceed further along in this list from top to bottom, the number of users receiving notifications gradually decreases, leading to a corresponding increase in the accuracy of these notifications.</p>
+
+<p>We feel that a goal worth pursuing is to only notify the user if they have an immediate health risk, prompting them to either self-isolate or to seek medical attention. This warrants the use of either precise geolocation notification (accepting the privacy compromise) or Bluetooth “handshake” contact reporting as notification systems that can prompt the user into immediate action without running the risk of overexposure noted earlier in this section.</p>
+
+<h3 id="how-to-verify-reports">How to verify reports</h3>
+
+<p>The verification of devices belonging to individuals with a positive COVID-19 status is crucial in order to preserve the purity of the dataset. False observations run the risk of pinging users with false notifications, and, as discussed in the preceding section, can render the entire notification system moot.</p>
+
+<p>To deal with this issue, we propose two ways of implementing device verification:</p>
+
+<ul>
+  <li>The SDK of the app is used as an ID in the form of a 2D barcode, which the health official can scan to log and verify as a COVID-19 positive device. The device will then ping the device owner, who can then elect to share their data and notify users they may have come into contact with.</li>
+  <li>In the absence of the necessary infrastructure for this option to be technologically feasible, the health official will have a series of pre-generated one-time use alphanumeric tokens<sup>[2]</sup> they can provide to the COVID-19 positive device owner, who can then input that token into their device and select whether or not to share their data to notify other devices they may have come into contact with.</li>
+</ul>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Apropos of the discussion in the preceding paragraphs, we feel that the most accurate mechanism for contact tracing COVID-19 entails the following steps:</p>
+
+<ul>
+  <li>Bluetooth handshakes between devices are stored locally.</li>
+  <li>COVID-19 positive individuals are verified through their devices by means of a token generated by health officials.</li>
+  <li>Users are explicitly asked for consent to transmit their data in order to notify anyone that they have come in contact with.</li>
+  <li>Finally, geolocation for mapping high-risk areas can also be utilized in a privacy centric manner. Locally run heuristic techniques can be used that would strip out personally identifiable user information (such as home addresses, etc.) and ensure that the users’ privacy remains intact while still being able to provide public health officials with extremely valuable and relevant data.</li>
+</ul>
+
+<p>This process offers the following undeniable advantages — it minimizes the data collected only to the bare minimum for the purpose at hand, it requires explicit user consent for any transmission of data and finally, it only notifies people of an immediate health risk. We are hopeful that these three facets of the system being proposed here will engender the general populace’s trust in the application, making it an effective tool with which to combat the spread of COVID-19.</p>
+
+<p><a href="/api-spec.html">View API Specs</a>.</p>
+
+<p><strong>References</strong></p>
+
+<p>[1]	Ramesh Raskar, MIT (March 19, 2020) <em>Apps Gone Rogue: Maintaining Personal Privacy in an Epidemic</em> <a href="https://arxiv.org/pdf/2003.08567.pdf">https://arxiv.org/pdf/2003.08567.pdf</a></p>
+
+<p>[2]	Singapore Government Digital Services (April 1, 2020) <em>Trace together, safer together</em> <a href="https://www.tracetogether.gov.sg/">https://www.tracetogether.gov.sg/</a></p>
+
+<p>[3]	Dilshan Kathriarachchi &amp; Global News (April 2, 2020) <em>Should Canada use our cell phones to slow the spread of COVID-19?</em> <a href="https://omny.fm/shows/wait-theres-more/should-canada-use-our-cell-phones-to-slow-the-spre">https://omny.fm/shows/wait-theres-more/should-canada-use-our-cell-phones-to-slow-the-spre</a></p>
+
+<p>[4]	WeTrace &amp; Andreas Gassmann (March 30, 2020) <em>Privacy-Preserving Bluetooth COVID-19 Contract Tracing</em> <a href="https://wetrace.ch/">https://wetrace.ch/</a>, <a href="https://devpost.com/software/wetrace-g9ocyi">https://devpost.com/software/wetrace-g9ocyi</a></p>
+
+<p>[5]	Prof. Carmela Troncoso (April 3, 2020) <em>DP-3T - Decentralized Privacy-Preserving Proximity Tracing</em> <a href="https://github.com/DP-3T/documents">https://github.com/DP-3T/documents</a></p>
+
+<p>[6]	G.M. Morton, IBM (1966) <em>A computer oriented geodetic data base and a new technique in file sequencing</em> <a href="https://domino.research.ibm.com/library/cyberdig.nsf/papers/0DABF9473B9C86D48525779800566A39/$File/Morton1966.pdf">https://domino.research.ibm.com/library/cyberdig.nsf/papers/0DABF9473B9C86D48525779800566A39/$File/Morton1966.pdf</a></p>
+
+<p>[7]	CoEpi (April 3, 2020) <em>CEN Protocol</em> <a href="https://github.com/Co-Epi/CEN">https://github.com/Co-Epi/CEN</a></p>
+
 
       <footer class="site-footer">
-        {% if site.github.is_project_page %}
-          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
-        {% endif %}
+
+          <span class="site-footer-owner"><a href="https://github.com/EQWorks/flaat-tracing">flaat-tracing</a> is maintained by <a href="https://github.com/EQWorks">EQWorks</a>.</span>
+
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
       </footer>
     </main>
