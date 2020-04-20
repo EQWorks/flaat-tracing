@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+
+    
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>API specs | FLAAT Tracing</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="API specs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Privacy-safe Decentralized Tracing with Informed Consent" />
+<meta property="og:description" content="Privacy-safe Decentralized Tracing with Informed Consent" />
+<link rel="canonical" href="http://localhost:4000/api-spec.html" />
+<meta property="og:url" content="http://localhost:4000/api-spec.html" />
+<meta property="og:site_name" content="FLAAT Tracing" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/api-spec.html","headline":"API specs","description":"Privacy-safe Decentralized Tracing with Informed Consent","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/logo/logo.png"}},"@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=29a14d4f836b96afd778410224a85ae517b018b7">
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+
+    <header class="page-header" role="banner">
+      <h1 class="project-name">API specs</h1>
+      <h2 class="project-tagline">Privacy-safe Decentralized Tracing with Informed Consent</h2>
+      
+        <a href="https://github.com/EQWorks/flaat-tracing" class="btn">View on GitHub</a>
+      
+      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+      <h1 id="api-specs">API specs</h1>
+
+<h2 id="login">Login</h2>
+
+<h4 id="login--register-post-login">Login &amp; Register: <code class="language-plaintext highlighter-rouge">POST /login/</code></h4>
+
+<h4 id="auth-required-no">Auth Required: No</h4>
+<h4 id="body-example">Body Example:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ 
+  “device_id”: “string_token” 
+}
+</code></pre></div></div>
+<h4 id="success-response">Success Response:</h4>
+<h4 id="code-200-ok">Code: <code class="language-plaintext highlighter-rouge">200 OK</code></h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> {
+   “token”: “string_token”
+ }
+</code></pre></div></div>
+<h4 id="error-response">Error Response:</h4>
+<h4 id="code-400-bad-request">Code: <code class="language-plaintext highlighter-rouge">400 BAD REQUEST</code></h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> {
+   “message”: “Missing fields.”
+ }
+</code></pre></div></div>
+
+<h2 id="reporting">Reporting</h2>
+
+<h4 id="report-diagnosis-post-tcnreport">Report Diagnosis: <code class="language-plaintext highlighter-rouge">POST /tcnreport/</code></h4>
+<h4 id="auth-required-yes">Auth Required: Yes</h4>
+<h4 id="body-example-1">Body Example:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "validationPin": "string_token",
+  "report": "c432bf9538f248a8238543a89d08e098c89bb890",
+  "traces": [
+    {
+      "geohash": "string_hash",
+      "start": timestamp,
+      "end": timestamp
+    }
+  ]
+}
+</code></pre></div></div>
+<h4 id="success-response-1">Success Response:</h4>
+<h4 id="code-201-created">Code: <code class="language-plaintext highlighter-rouge">201 CREATED</code></h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> {
+   "message": "Successful upload."
+ }
+</code></pre></div></div>
+<h4 id="error-response-1">Error Response:</h4>
+<h4 id="code-400-bad-request-1">Code: <code class="language-plaintext highlighter-rouge">400 BAD REQUEST</code></h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> {
+   “message”: “Missing fields.”
+ }
+</code></pre></div></div>
+
+<h2 id="local-look-up">Local Look-up</h2>
+
+<h4 id="get-confirmed-reporting-get-tcnreport">Get Confirmed Reporting: <code class="language-plaintext highlighter-rouge">GET /tcnreport/</code></h4>
+<h4 id="auth-required-yes-1">Auth Required: Yes</h4>
+<h4 id="query-params-example">Query Params Example:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "verified": boolean,
+  "fromDate": timestamp,
+}
+</code></pre></div></div>
+<h4 id="body-params-example">Body Params Example:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "locations": [
+    {
+      "geohash": "string_hash",
+      "start": timestamp,
+      "end": timestamp
+    }
+  ]
+}
+</code></pre></div></div>
+<h4 id="success-response-2">Success Response:</h4>
+<h4 id="code-200-ok-1">Code: <code class="language-plaintext highlighter-rouge">200 OK</code></h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> {
+   "reports": [
+     {
+       "id": 1,
+       "report": "c432bf9538f248a8238543a89d08e098c89bb890",
+       "traces": [
+         {
+           "geohash": "string_hash",
+           "start_time": timestamp,
+           "end_time": timestamp
+         }
+       ]
+     }
+   ]
+ }
+</code></pre></div></div>
+
+<h4 id="error-response-2">Error Response:</h4>
+<h4 id="code-400-bad-request-2">Code: <code class="language-plaintext highlighter-rouge">400 BAD REQUEST</code></h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> {
+   “message”: “Missing fields.”
+ }
+</code></pre></div></div>
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/EQWorks/flaat-tracing">flaat-tracing</a> is maintained by <a href="https://github.com/EQWorks">EQWorks</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  </body>
+</html>
