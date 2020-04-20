@@ -258,7 +258,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans", "Helvetica Neue", Helvet
 a { color: #1e6bb8; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.btn { display: inline-block; margin: 1rem; color: rgba(255, 255, 255, 0.7); background-color: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); border-style: solid; border-width: 1px; border-radius: 0.3rem; transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
+.btn { display: inline-block; margin-bottom: 1rem; color: rgba(255, 255, 255, 0.7); background-color: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.2); border-style: solid; border-width: 1px; border-radius: 0.3rem; transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
 .btn:hover { color: rgba(255, 255, 255, 0.8); text-decoration: none; background-color: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
 .btn + .btn { margin-left: 1rem; }
 @media screen and (min-width: 64em) { .btn { padding: 0.75rem 1rem; } }
@@ -318,19 +318,18 @@ a:hover { text-decoration: underline; }
 
 .site-footer-credits { color: #819198; }
 
-.page-header { background-color: #3542E4; background-image: none; padding-bottom: 2rem;}
+.page-header { background-color: #3542E4; background-image: none; padding-bottom: 2rem; }
 
 .btn { color: #000000; background-color: #ffffff; border-radius: 0rem; padding: 1rem 3rem; }
 
 .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 { color: #000000; }
 
 .project-tagline { color: #ffffff; opacity: 1.0; }
-.grid-container {
-  display: inline-grid;
-  grid-template-columns: auto auto;
-  width: 100%;
-}
+
+.grid-container { display: inline-grid; grid-template-columns: auto auto; width: 100%; }
+
 .grid-item2 { text-align: right; color: #d7d7d7; }
+
 .grid-item1, .grid-item2 { align-self: end; }
 
 .main-content h3 { margin-top: 0rem; }
