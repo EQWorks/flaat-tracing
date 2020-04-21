@@ -1,11 +1,9 @@
-# FLAAT Tracing
-
+<div class="grid-container">
+  <div class="grid-item1"><h1 id="flaat-tracing">FLAAT Tracing Whitepaper</h1></div>
+  <div class="grid-item2"><p>First Published: April 6, 2020</p></div>
+</div>
 
 ### Privacy-safe Decentralized Tracing with Informed Consent
-
-EQ Works
-
-First Published: April 6, 2020
 
 There is an immediate need for health and government officials across the country to have access to high-quality contact tracing data, and there exists a variety of different mechanisms through which this data can be collected. However, as in any endeavor dealing with potentially sensitive information, maximizing the accuracy of the data obtained usually entails a consequent loss in privacy, and it is this balancing act between accuracy and privacy that deserves greater scrutiny. Any solution trying to address this issue will have to toe the line between the procurement of accurate and verifiable data while allowing consumers to rest assured behind a privacy shield. Such a solution would then open the doorway to widespread consumer adoption needed to reach the critical mass required to inform policy changes during the current COVID-19 crisis.
 
