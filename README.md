@@ -74,6 +74,8 @@ This process offers the following undeniable advantages — it minimizes the dat
 
 [View API Specs](api-spec.md).
 
+[Features Comparison Table](features-table.md).
+
 **References**
 
 [1]	Ramesh Raskar, MIT (March 19, 2020) _Apps Gone Rogue: Maintaining Personal Privacy in an Epidemic_ [https://arxiv.org/pdf/2003.08567.pdf](https://arxiv.org/pdf/2003.08567.pdf)
