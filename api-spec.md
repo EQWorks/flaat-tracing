@@ -1,5 +1,9 @@
 # API specs
 
+Flaat API implements _Temporary Contact Numbers (TCN)_, a decentralized, privacy-first contact tracing protocol developed by the [TCN Coalition](https://github.com/TCNCoalition/TCN).
+
+The full API's codebase is available publicly on [EQ Works' GitHub accout](https://github.com/EQWorks/flaat-api).
+
 Login
 -----   
 
@@ -76,11 +80,12 @@ Local Look-up
 ```
 {
   "verified": boolean,        // exclude unverified reports
-  "fromDate": number,         // unix time (in seconds)
-  "toDate": number,           // unix time (in seconds)
+  "fromDate": number,         // UTC unix time (in seconds)
+  "toDate": number,           // UTC unix time (in seconds)
   "fullReport": boolean,      // return report || signature
   "locations": Array<string>, // array of geohashes
-  "intervalNumber": number.   // 6-hour time window since unix epoch (superseded by fromDate) 
+  "intervalNumber": number.   // 6-hour time window since UTC unix epoch (superseded by fromDate)
+  "date": "YYYY-MM-DD"        // UTC date (superseded by fromDate and intervalNumber)
 }
 ```
 #### Success Response:
