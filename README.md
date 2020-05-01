@@ -72,11 +72,16 @@ Apropos of the discussion in the preceding paragraphs, we feel that the most acc
 
 This process offers the following undeniable advantages — it minimizes the data collected only to the bare minimum for the purpose at hand, it requires explicit user consent for any transmission of data and finally, it only notifies people of an immediate health risk. We are hopeful that these three facets of the system being proposed here will engender the general populace’s trust in the application, making it an effective tool with which to combat the spread of COVID-19.
 
-[View API Specs](api-spec.md).
+Note: [Features Comparison Table](features-table.md).
 
-[Features Comparison Table](features-table.md).
+### Implementations
 
-**References**
+- [FLAAT API Specs](api-spec.md)
+- [FLAAT API Implementation](https://github.com/EQWorks/flaat-api)
+- [FLAAT iOS SDK](https://github.com/EQWorks/flaat-sdk-ios)
+- [FLAAT Dashboard](https://dash.flaat.io/)
+
+### References
 
 [1]	Ramesh Raskar, MIT (March 19, 2020) _Apps Gone Rogue: Maintaining Personal Privacy in an Epidemic_ [https://arxiv.org/pdf/2003.08567.pdf](https://arxiv.org/pdf/2003.08567.pdf)
 
