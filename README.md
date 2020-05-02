@@ -1,6 +1,7 @@
 <div class="grid-container">
   <div class="grid-item1"><h1 id="flaat-tracing">FLAAT Tracing Whitepaper</h1></div>
   <div class="grid-item2"><p>First Published: April 6, 2020</p></div>
+  <div class="grid-item2"><p>Updated: May 2, 2020</p></div>
 </div>
 
 ### Privacy-safe Decentralized Tracing with Informed Consent
@@ -16,7 +17,9 @@ In this whitepaper, we are going to analyze the different ways in which cellular
 
 ### How to Log and Store the Data
 
-**Privacy-safe identification** - In order to remove all traceability back to an individual, we’re proposing the adoption of the CEN identifier sequencing mechanism proposed by CoEpi<sup>[7]</sup>. This would be the only identifier that is either broadcast or uploaded to the repository. This identifier will not be associated with any other identifiers outside of the scope of the mobile application environment. It is possible to utilize other identity-linked identifiers (telephone numbers, MAIDs, etc.) within the mobile application environment subject to the users’ consent to share these attributes with the application in question. All validation against these identifiers must happen at the edge, locally within the mobile application scope using a hashing or encryption process to protect the sanctity of the user’s privacy. Under no circumstances must any non-privacy-safe identifier be broadcast, communicated or uploaded beyond the scope of the mobile application’s local scope and sandbox.
+**Privacy-safe identification** - In order to remove all traceability back to an individual, we are proposing the adoption of the TCN protocol--a decentralized, privacy-first contact tracing protocol developed by the TCN Coalition[7].This procedure uses Temporary Contact Numbers (TCNs) as identifiers that users generate and broadcast over Bluetooth to nearby devices. In the event a user uploads a packet of data to a server, a report is sent to all users they may have encountered in some time interval. What is important to note about the TCN protocol is that a users's TCNs are deterministically generated from some seed data. It is this seed data that is sent to the server and not the TCN numbers themselves, thereby reducing the size of the report sent to the server. In this way, possible scalability issues that may arise in the event of a large user base can be effectively dealt with.
+
+It is possible to utilize other identity-linked identifiers (telephone numbers, MAIDs, etc.) within the mobile application environment subject to the users’ consent to share these attributes with the application in question. All validation against these identifiers must happen at the edge, locally within the mobile application scope using a hashing or encryption process to protect the sanctity of the user’s privacy. Under no circumstances must any non-privacy-safe identifier be broadcast, communicated or uploaded beyond the scope of the mobile application’s local scope and sandbox.
 
 **Data logging specifics** - There are two mechanisms — geolocation and bluetooth<sup>[4]</sup> — by which data can be collected and used for COVID-19 contact tracing.
 
@@ -34,7 +37,7 @@ Irrespective of the approach used, be it geolocation or Bluetooth, storing the d
 
 Storing the data locally (on a user’s device, irretrievable without the explicit consent of the user) would limit the public authorities’ access. When a user has tested positive for COVID-19, he/she can then make the conscious decision to report and share their data back to a centralized repository for the public good. Data stored locally in this manner would then be deleted periodically as its epidemiological value diminishes over time.
 
-Given the lack of a solution that covers all the various bases and the nature of the various compromises the two solutions mentioned above entail, we propose making available multiple mechanisms for a user to contribute (with consent) their logged epidemiologically valuable data for the explicit purpose of contact tracing, in the event of a positive COVID-19 diagnosis.
+Given the lack of a solution that covers all the various bases and the nature of the various compromises the two solutions mentioned above entail, we propose the adoption of the TCN protocol for a user to contribute (with consent) their logged epidemiologically valuable data for the explicit purpose of contact tracing. As noted earlier, users interact with the server via packets of data to either send a report to all users they may have encountered or receive any reports in turn. While this hybrid approach entails the use of a server (for storing anonymized reports), we find that it best respects the privacy of both the reporter and the receiver.
 
 
 ### How and when to inform users of cases spreading near them
@@ -68,7 +71,8 @@ Apropos of the discussion in the preceding paragraphs, we feel that the most acc
 *   Bluetooth handshakes between devices are stored locally.
 *   COVID-19 positive individuals are verified through their devices by means of a token generated by health officials.
 *   Users are explicitly asked for consent to transmit their data in order to notify anyone that they have come in contact with.
-*   Finally, geolocation for mapping high-risk areas can also be utilized in a privacy centric manner. Locally run heuristic techniques can be used that would strip out personally identifiable user information (such as home addresses, etc.) and ensure that the users’ privacy remains intact while still being able to provide public health officials with extremely valuable and relevant data.
+*   Geolocation for mapping high-risk areas can also be utilized in a privacy centric manner. Locally run heuristic techniques can be used that would strip out personally identifiable user information (such as home addresses, etc.) and ensure that the users’ privacy remains intact while still being able to provide public health officials with extremely valuable and relevant data.
+*   Finally, in light of recent collaborative efforts by Apple and Google in crafting a comprehensive contact tracing platform, any such mechanism must be flexible enough to integrate with (or even adopt) the Exposure Notification System proposed by the two companies<sup>[8]</sup>. This system is, in principle at least, very similar to the TCN protocol and does not contradict the characteristics and requirements laid down by the TCN Coalition.
 
 This process offers the following undeniable advantages — it minimizes the data collected only to the bare minimum for the purpose at hand, it requires explicit user consent for any transmission of data and finally, it only notifies people of an immediate health risk. We are hopeful that these three facets of the system being proposed here will engender the general populace’s trust in the application, making it an effective tool with which to combat the spread of COVID-19.
 
@@ -95,4 +99,6 @@ Note: [Features Comparison Table](features-table.md).
 
 [6]	G.M. Morton, IBM (1966) _A computer oriented geodetic data base and a new technique in file sequencing_ [https://domino.research.ibm.com/library/cyberdig.nsf/papers/0DABF9473B9C86D48525779800566A39/$File/Morton1966.pdf](https://domino.research.ibm.com/library/cyberdig.nsf/papers/0DABF9473B9C86D48525779800566A39/$File/Morton1966.pdf)
 
-[7]	CoEpi (April 3, 2020) _CEN Protocol_ [https://github.com/Co-Epi/CEN](https://github.com/Co-Epi/CEN)
+[7] TCN Coalition (April 3, 2020) _TCN Protocol_ [https://github.com/TCNCoalition/TCN](https://github.com/TCNCoalition/TCN)
+
+[8]	Apple|Google (April 10, 2020) _Privacy-Preserving Contact Tracing_ [https://www.apple.com/covid19/contacttracing](https://www.apple.com/covid19/contacttracing)
