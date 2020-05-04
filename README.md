@@ -1,7 +1,6 @@
 <div class="grid-container">
   <div class="grid-item1"><h1 id="flaat-tracing">FLAAT Tracing Whitepaper</h1></div>
-  <div class="grid-item2"><p>First Published: April 6, 2020</p></div>
-  <div class="grid-item2"><p>Updated: May 2, 2020</p></div>
+  <div class="grid-item2"><p>First Published: April 6, 2020 (Updated: May 2, 2020)</p></div>
 </div>
 
 ### Privacy-safe Decentralized Tracing with Informed Consent
@@ -101,4 +100,4 @@ Note: [Features Comparison Table](features-table.md).
 
 [7] TCN Coalition (April 3, 2020) _TCN Protocol_ [https://github.com/TCNCoalition/TCN](https://github.com/TCNCoalition/TCN)
 
-[8]	Apple|Google (April 10, 2020) _Privacy-Preserving Contact Tracing_ [https://www.apple.com/covid19/contacttracing](https://www.apple.com/covid19/contacttracing)
+[8]	Apple\|Google (April 10, 2020) _Privacy-Preserving Contact Tracing_ [https://www.apple.com/covid19/contacttracing](https://www.apple.com/covid19/contacttracing)
