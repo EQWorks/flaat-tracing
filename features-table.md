@@ -1,6 +1,6 @@
-# Features Table
+# Analysis of Different Approaches to Contact Tracing
 
-Tables categorized by features / parts of functionality.
+The following tables are categorized by features or parts of functionality.
 
 Main criteria of this analysis for each feature:
 
@@ -9,6 +9,9 @@ Main criteria of this analysis for each feature:
 - Amount of overall traffic
 - Ability to collect and analyze data
 
+Privacy analysis is divided in two components:
+- *Actual Privacy* reflects who owns data and how it is used in reality
+- *User Perceived Privacy* reflects what users may think about protection of their privacy and ownership of their data based on the information they know about the application (for example, the app asking for access to user's location in the background will be perceived as one that is constantly tracking all locations, regardless of what data is actually sent to server)
 
 ### Geolocation Data Stored Locally
 
@@ -73,9 +76,9 @@ Main criteria of this analysis for each feature:
 |Approach|Details|Pros|Cons|
 |--- |--- |--- |--- |
 |Broadcasting to everyone||No need to store any ids/locations on servers.|Very high traffic volume with 99% data ignored.<br/>(Can be optimized by bundling and sending reports every X hours.)|
-|**Broadcasting by geohash<br/>(recommended)**|||Need to store geohash (area) of each user.|
-|**Precise notification by BLE UUID/key<br/>(recommended)**||Only specific users at risk get notified|Need to store BLE UUID/key for each user.|
-|Polling server|Fetch list of geohashes or BLE UUIDs/keys periodically every X hours|No need to precisely send notifications or broadcast them.|Active cases (ids/geohashes) need to be stored on servers for a while.<br/>Downloading list may be problematic if number of active cases is high.<br/>App needs to be woken up periodically to poll from server.|
+|Broadcasting by geohash<br/>|||Need to store geohash (area) of each user.|
+|Precise notification by BLE UUID/key<br/>||Only specific users at risk get notified|Need to store BLE UUID/key for each user.|
+|**Polling server (recommended)**|Fetch list of geohashes or BLE UUIDs/keys periodically every X hours|No need to precisely send notifications or broadcast them.<br/>Maximum privacy - server is not aware of which users are at risk and cannot restore graph of all contacts.|Active cases (ids/geohashes) need to be stored on servers for a while.<br/>Downloading list may be problematic if number of active cases is high.<br/>App needs to be woken up periodically to poll from server.|
 
 
 
@@ -98,4 +101,5 @@ HA - health authority
 |--- |--- |--- |--- |
 |Generate only UUID or hash on device|UUID can be constant per device or change every day (then history needs to be kept).<br/>To enable direct notifications for users at risk some data needs to be stored on the server (either UUIDs of all users or UUIDs of infected users).|Easy to generate and share.|If UUIDs are stored on the server, we can map each UUID to device ID which has moderate privacy concerns.<br/>Including any additional info about the encounter (when, where it happened) poses risks when data is broadcasted (without storing on server) because all devices will get it.<br/>UUID is plain and doesn’t provide any additional info.<br/>No analysis or limited analysis can be done (depending on what data stored on servers).|
 |Generate public and private keys on device|Public key is shared to all encounters|Device of infected person can encrypt additional info about the encounter (e.g. when and where it happened) without sharing it with all devices, so only target device can decrypt the message.|No analysis can be done even if data is stored on server because it can be decrypted only by target device (of person at risk).|
-|**Server-generated public and private keys<br/>(recommended)**|Unique key is provided by server to each device and only server can decrypt the message when report is submitted.|We can send push notifications directly to target users if we store user IDs &lt;-> device IDs on server and encrypt them with public key when exchanging with peers.|Requires refreshing public keys from server periodically.<br/>Requires storage of key pairs on server.<br/>Requires server to decrypt the message and have device IDs mapped to user IDs to send notifications to target users => moderate privacy concerns.|
+|Server-generated public and private keys<br/>|Unique key is provided by server to each device and only server can decrypt the message when report is submitted.|We can send push notifications directly to target users if we store user IDs &lt;-> device IDs on server and encrypt them with public key when exchanging with peers.|Requires refreshing public keys from server periodically.<br/>Requires storage of key pairs on server.<br/>Requires server to decrypt the message and have device IDs mapped to user IDs to send notifications to target users => moderate privacy concerns.|
+|**Keys derived from asymmetric key pairs on device<br/>(recommended)**|As defined in [TCN Protocol](https://github.com/TCNCoalition/TCN), devices exchange derived identifiers (TCNs) instead of public keys, but those identifiers are rotated frequently and can be restored later only from uploaded and signed infection reports.|Server or anybody else doesn't know about any user's location, contacts or exposure status.<br/>Users cannot send reports on behalf of other users.<br/>Contact identifier rotation minimizes possibility of passive tracking.<br/>Infected users who send reports do not reveal any personal information to anyone except time of contact.<br/>|Client devices need to poll reports from server periodically and large number of reports may cause large payload (few MB).|
